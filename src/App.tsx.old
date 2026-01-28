@@ -1,0 +1,96 @@
+import { useMemo, useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import MovieGrid from "./components/MovieGrid";
+import type { Movie } from "./components/MovieCard";
+
+export default function App() {
+  const movies: Movie[] = useMemo(
+    () => [
+      { id: 1, title: "Midnight Heist", year: 2024, genre: "Thriller" },
+      { id: 2, title: "Neon Skies", year: 2023, genre: "Sci-Fi" },
+      { id: 3, title: "Small Town Hero", year: 2022, genre: "Drama" },
+      { id: 4, title: "Laugh Track", year: 2021, genre: "Comedy" },
+      { id: 5, title: "Ocean Signal", year: 2020, genre: "Mystery" },
+      { id: 6, title: "The Last Level", year: 2025, genre: "Action" },
+      { id: 7, title: "Quiet Minutes", year: 2019, genre: "Indie" },
+      { id: 8, title: "Desert Run", year: 2018, genre: "Adventure" },
+    ],
+    []
+  );
+
+  const [query, setQuery] = useState("");
+  const [activeGenre, setActiveGenre] = useState("All");
+  const [selected, setSelected] = useState<Movie | null>(null);
+
+  const genres = useMemo(() => {
+    const unique = Array.from(new Set(movies.map((m) => m.genre))).sort();
+    return ["All", ...unique];
+  }, [movies]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return movies.filter((m) => {
+      const matchesQuery =
+        q.length === 0 ||
+        m.title.toLowerCase().includes(q) ||
+        String(m.year).includes(q);
+
+      const matchesGenre = activeGenre === "All" || m.genre === activeGenre;
+
+      return matchesQuery && matchesGenre;
+    });
+  }, [movies, query, activeGenre]);
+
+  return (
+    <div className="page">
+      <Header
+        query={query}
+        onQueryChange={setQuery}
+        genres={genres}
+        activeGenre={activeGenre}
+        onGenreChange={setActiveGenre}
+      />
+
+      <section className="hero">
+        <h1 className="heroTitle">Build fast. Ship faster.</h1>
+        <p className="heroSub">
+          Day 1: clean UI + filtering + real component structure.
+        </p>
+      </section>
+
+      <MovieGrid movies={filtered} onSelect={setSelected} />
+
+      {selected && (
+        <div className="overlay" onClick={() => setSelected(null)}>
+          <div
+            className="panel"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="panelTop">
+              <div>
+                <div className="panelTitle">{selected.title}</div>
+                <div className="panelMeta">
+                  <span>{selected.year}</span>
+                  <span className="dot">•</span>
+                  <span>{selected.genre}</span>
+                </div>
+              </div>
+
+              <button
+                className="closeBtn"
+                onClick={() => setSelected(null)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="panelBody">
+              This is a placeholder description.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

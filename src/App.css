@@ -1,0 +1,267 @@
+/* src/App.css */
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #eaeaea;
+  background: #0b0b0f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(11, 11, 15, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #ff2d55;
+  box-shadow: 0 0 18px rgba(255, 45, 85, 0.6);
+}
+
+.brandText {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search,
+.select {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaeaea;
+  padding: 10px 12px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.search {
+  width: min(360px, 46vw);
+}
+
+.search::placeholder {
+  color: rgba(234, 234, 234, 0.6);
+}
+
+.hero {
+  padding: 26px 20px 8px;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: 34px;
+}
+
+.heroSub {
+  margin: 10px 0 0;
+  color: rgba(234, 234, 234, 0.75);
+  max-width: 720px;
+  line-height: 1.4;
+}
+
+.gridWrap {
+  padding: 16px 20px 36px;
+}
+
+.gridHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+}
+
+.count {
+  color: rgba(234, 234, 234, 0.65);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.thumb {
+  height: 120px;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 45, 85, 0.45),
+      rgba(11, 11, 15, 0) 60%
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+  display: grid;
+  place-items: center;
+}
+
+.thumbText {
+  font-size: 44px;
+  font-weight: 800;
+  color: rgba(234, 234, 234, 0.9);
+}
+
+.cardBody {
+  padding: 12px 12px 14px;
+}
+
+.cardTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cardMeta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(234, 234, 234, 0.7);
+  font-size: 13px;
+}
+
+.dot {
+  opacity: 0.7;
+}
+
+.empty {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  color: rgba(234, 234, 234, 0.75);
+}
+/* Make cards clickable without ugly button styles */
+.cardButton {
+  all: unset;
+  display: block;
+  cursor: pointer;
+}
+
+.cardButton:focus-visible .card {
+  outline: 2px solid rgba(255, 45, 85, 0.8);
+  outline-offset: 3px;
+}
+
+/* Overlay + details panel */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.panel {
+  width: min(720px, 96vw);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 16, 22, 0.96);
+  backdrop-filter: blur(10px);
+  padding: 16px 16px 14px;
+}
+
+.panelTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.panelTitle {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.panelMeta {
+  color: rgba(234, 234, 234, 0.7);
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.closeBtn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaeaea;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.panelBody {
+  margin: 12px 0 0;
+  color: rgba(234, 234, 234, 0.75);
+  line-height: 1.45;
+}
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.cardLink:focus-visible .card {
+  outline: 2px solid rgba(255, 45, 85, 0.8);
+  outline-offset: 3px;
+}
+.brandLink {
+  text-decoration: none;
+  color: inherit;
+}
+.status {
+  padding: 10px 20px;
+  color: rgba(234, 234, 234, 0.8);
+}
+
+.status.error {
+  color: rgba(255, 120, 120, 0.95);
+}
+
